@@ -5,14 +5,11 @@
 ## Xcode required - https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Installation.md#requirements
 xcode-select --install
 
-## Remove any apps below which are already installed
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
 ###############################################################################
 # Homebrew + Cask                                                             #
 ###############################################################################
-brew install caskroom/cask/brew-cask
-brew tap caskroom/versions
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew tap caskroom/cask
 
 ###############################################################################
 # Common                                                                      #
@@ -29,6 +26,7 @@ brew cask install dialpad
 ###############################################################################
 brew cask install adobe-photoshop-cc
 brew cask install adobe-indesign-cc
+brew cask install adobe-premiere-pro-cc
 
 ###############################################################################
 # Security                                                                    #
@@ -168,9 +166,9 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 # Disable local Time Machine backups
 hash tmutil &> /dev/null && sudo tmutil disablelocal
 
-
-
-#non cli apps
+###############################################################################
+# Complete                                                                    #
+###############################################################################
 open /Applications/App\ Store.app
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."

@@ -19,6 +19,7 @@ brew cask install firefox
 brew cask install microsoft-office
 brew cask install sublime-text
 brew cask install expandrive
+brew cask install joinme
 brew cask install dialpad
 
 ###############################################################################
@@ -68,7 +69,6 @@ defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
 # Disable Notification Center and remove the menu bar icon
 launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
-
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #

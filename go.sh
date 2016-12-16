@@ -145,7 +145,7 @@ defaults write com.apple.sidebarlists systemitems -dict-add ShowServers -bool tr
 defaults write com.apple.dock persistent-apps -array
 
 # Disable Dashboard
-defaults write com.apple.dashboard mcx-disabled -bool true
+#defaults write com.apple.dashboard mcx-disabled -bool true
 
 # Don’t automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false

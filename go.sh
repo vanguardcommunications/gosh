@@ -74,11 +74,14 @@ brew cask cleanup
 # General UI/UX                                                               #
 ###############################################################################
 
-# Set computer name (as done via System Preferences → Sharing)
-#sudo scutil --set ComputerName "0x6D746873"
-#sudo scutil --set HostName "0x6D746873"
-#sudo scutil --set LocalHostName "0x6D746873"
-#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
+# Use the Unique portion of the Apple 12 Digit Serial number 
+# https://www.macrumors.com/2010/04/16/apple-tweaks-serial-number-format-with-new-macbook-pro/
+FULLSERIAL=$(system_profiler SPHardwareDataType | sed '/^ *Serial Number (system):*/!d;s###;s/ //')
+PARTSERIAL=$(echo $FULLSERIAL | cut -c 6-8)
+sudo scutil --set ComputerName $PARTSERIAL
+sudo scutil --set HostName $PARTSERIAL
+sudo scutil --set LocalHostName $PARTSERIAL
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $PARTSERIAL
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true

@@ -1,14 +1,40 @@
 #!/bin/sh
-#http://blog.bmannconsulting.com/mavericks-brew-cask
-#https://github.com/mathiasbynens/dotfiles/blob/master/.osx
-# homebrew
-## Xcode required - https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Installation.md#requirements
-xcode-select --install
+###############################################################################
+# Sudo                                                                        #
+###############################################################################
+echo "Enter admin password if prompted"
+sudo -v #-v adds 5 minutes https://www.sudo.ws/man/1.8.13/sudo.man.html
+
+# Keep-alive: update existing `sudo` time stamp until finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+###############################################################################
+# Xcode                                                                       #
+###############################################################################
+# Xcode equired for homebrew - https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Installation.md#requirements
+# Install xcode if not already installed
+xcode-select -p &> /dev/null
+if [ $? -ne 0 ]; then
+  xcode-select --install
+else
+  echo "Xcode already installed"
+fi
+
+###############################################################################
+# Homebrew                                                                    #
+###############################################################################
+# Install homebrew if not already installed
+which -s brew
+if [[ $? != 0 ]] ; then
+    # Install Homebrew
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+   echo "Homebrew already installed"
+fi
 
 ###############################################################################
 # Homebrew + Cask                                                             #
 ###############################################################################
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap caskroom/cask
 
 ###############################################################################
@@ -25,9 +51,7 @@ brew cask install dialpad
 ###############################################################################
 # Design                                                                      #
 ###############################################################################
-brew cask install adobe-photoshop-cc
-brew cask install adobe-indesign-cc
-brew cask install adobe-premiere-pro-cc
+brew cask install adobe-creative-cloud #https://github.com/caskroom/homebrew-cask/pull/39442
 
 ###############################################################################
 # Security                                                                    #
@@ -36,6 +60,9 @@ echo "Administrator password required to enable FileVault"
 sudo fdesetup enable
 echo "Administrator password required to set lost and found notice"
 sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If found, please contact Vanguard Communications: 303-382-2999, newrequest@vanguardcommunications.net"
+
+# Log installation events for 10 years
+sudo perl -p -i -e 's/format=bsd/format=bsd mode=0640 rotate=utc compress file_max=5M ttl=3650/g' "/etc/asl/com.apple.install"
 
 ###############################################################################
 # Cleanup                                                                     #

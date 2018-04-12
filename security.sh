@@ -1,20 +1,26 @@
-echo "Administrator password required to enable FileVault"
-sudo fdesetup enable
-echo "Administrator password required to set lost and found notice"
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If found, please contact Vanguard Communications: 303-382-2999, newrequest@vanguardcommunications.net"
+echo "Administrator password will be required for security settings, such as FileVault."
+
+# CFR §164.312(a)(2)(iv) & §164.312(e)(2)(ii)
+sudo fdesetup enable #Turn on FileVault Full Disk Encryption FIPS 140-2 Compliant https://support.apple.com/en-us/HT207497
+
+# CFR §164.310(c) & §164.310(d)(2)(iii)
+LFMESSAGE="If found, please contact Vanguard Communications: 303-382-2999 or newrequest@vanguardcommunications.net"
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText $LFMESSAGE
 echo "Your Login Window Text can be edited in System Preferences > Security & Privacy > General > Set Lock Message."
 
-# Log installation events for 10 years
-sudo perl -p -i -e 's/format=bsd/format=bsd mode=0640 rotate=utc compress file_max=5M ttl=3650/g' "/etc/asl/com.apple.install"
+# CFR §164.312(b)
+sudo perl -p -i -e 's/format=bsd/format=bsd mode=0640 rotate=utc compress file_max=5M ttl=3650/g' "/etc/asl/com.apple.install" #Log installation events for 10 years
 
-# Disable the crash reporter
-defaults write com.apple.CrashReporter DialogType -string "none"
+# CFR §164.306(a)(3)
+defaults write com.apple.CrashReporter DialogType -string "none" #Disable the crash reporter
 
-# Check for software updates daily, not just once per week
-defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+# CFR §164.308(a)(5)(ii)(A) & §164.310(c)
+defaults write com.apple.commerce AutoUpdate -bool true # Turn on app auto-update
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1 # Check for software updates daily
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1 # Install System data files & security updates
 
-# Install System data files & security updates
-defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
-
-# Turn on app auto-update
-defaults write com.apple.commerce AutoUpdate -bool true
+# CFR §164.312(a)(2)(iii)
+sudo pmset -b displaysleep 2 #turn off display after 2 minutes on battery
+sudo pmset -c displaysleep 10 #turn off display after 10 minutes on cable power
+defaults write com.apple.screensaver askForPassword -int 1 #require password when display off
+defaults write com.apple.screensaver askForPasswordDelay -int 10 #delay password requirement 10 seconds

@@ -54,17 +54,6 @@ brew cask install dialpad
 brew cask install adobe-creative-cloud #https://github.com/caskroom/homebrew-cask/pull/39442
 
 ###############################################################################
-# Security                                                                    #
-###############################################################################
-echo "Administrator password required to enable FileVault"
-sudo fdesetup enable
-echo "Administrator password required to set lost and found notice"
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If found, please contact Vanguard Communications: 303-382-2999, newrequest@vanguardcommunications.net"
-
-# Log installation events for 10 years
-sudo perl -p -i -e 's/format=bsd/format=bsd mode=0640 rotate=utc compress file_max=5M ttl=3650/g' "/etc/asl/com.apple.install"
-
-###############################################################################
 # Cleanup                                                                     #
 ###############################################################################
 brew cleanup
@@ -90,12 +79,6 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 # Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
-
-# Disable the crash reporter
-defaults write com.apple.CrashReporter DialogType -string "none"
-
-# Check for software updates daily, not just once per week
-defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
 # Disable Notification Center and remove the menu bar icon
 launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
@@ -166,18 +149,18 @@ defaults write com.apple.sidebarlists systemitems -dict-add ShowServers -bool tr
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
 
-# Minimize windows into their applicationâ€™s icon
+# Minimize windows into their application’s icon
 # defaults write com.apple.dock minimize-to-application -bool true
 
 # Wipe all (default) app icons from the Dock
-# This is only really useful when setting up a new Mac, or if you donâ€™t use
+# This is only really useful when setting up a new Mac, or if you don’t use
 # the Dock to launch apps.
 defaults write com.apple.dock persistent-apps -array
 
 # Disable Dashboard
 #defaults write com.apple.dashboard mcx-disabled -bool true
 
-# Donâ€™t automatically rearrange Spaces based on most recent use
+# Don’t automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
 
 # Disable the Launchpad gesture (pinch with thumb and three fingers)

@@ -9,6 +9,11 @@ sudo -v #-v adds 5 minutes https://www.sudo.ws/man/1.8.13/sudo.man.html
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 ###############################################################################
+# Security                                                                    #
+###############################################################################
+sh <(curl -s https://bitbucket.org/vcg/gosh/raw/master/security.sh)
+
+###############################################################################
 # Xcode                                                                       #
 ###############################################################################
 # Xcode equired for homebrew - https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Installation.md#requirements
@@ -149,18 +154,18 @@ defaults write com.apple.sidebarlists systemitems -dict-add ShowServers -bool tr
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
 
-# Minimize windows into their application’s icon
+# Minimize windows into their applicationï¿½s icon
 # defaults write com.apple.dock minimize-to-application -bool true
 
 # Wipe all (default) app icons from the Dock
-# This is only really useful when setting up a new Mac, or if you don’t use
+# This is only really useful when setting up a new Mac, or if you donï¿½t use
 # the Dock to launch apps.
 defaults write com.apple.dock persistent-apps -array
 
 # Disable Dashboard
 #defaults write com.apple.dashboard mcx-disabled -bool true
 
-# Don’t automatically rearrange Spaces based on most recent use
+# Donï¿½t automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
 
 # Disable the Launchpad gesture (pinch with thumb and three fingers)

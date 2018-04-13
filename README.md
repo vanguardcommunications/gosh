@@ -12,6 +12,5 @@ Set your Mac to VCG specifications
 
 ### Mac Security Update ###
 * Hit `Command + Space` and search `terminal`
-* In terminal, type `sh <(curl -s https://bitbucket.org/vcg/gosh/raw/master/lostfound.sh)` and hit `return`
-* In terminal, type `sh <(curl -s https://bitbucket.org/vcg/gosh/raw/master/id.sh)` and hit `return`
-* In terminal, type `sh <(curl -s https://raw.githubusercontent.com/hipaacert/macos-hipaa/master/build.sh)` and hit `return`
+* In terminal, type `sh <(curl -s https://bitbucket.org/vcg/gosh/raw/master/security.sh)`
+* Hit `return`

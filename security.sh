@@ -1,5 +1,3 @@
-#see https://github.com/hipaacert/macos-hipaa
-
 # CFR §164.310(c) & §164.310(d)(2)(iii)
 LFMESSAGE="If found, please contact Vanguard Communications: 303-382-2999 or newrequest@vanguardcommunications.net"
 sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText $LFMESSAGE

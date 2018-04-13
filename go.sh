@@ -9,11 +9,6 @@ sudo -v #-v adds 5 minutes https://www.sudo.ws/man/1.8.13/sudo.man.html
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 ###############################################################################
-# Security                                                                    #
-###############################################################################
-sh <(curl -s https://bitbucket.org/vcg/gosh/raw/master/security.sh)
-
-###############################################################################
 # Xcode                                                                       #
 ###############################################################################
 # Xcode equired for homebrew - https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Installation.md#requirements
@@ -67,15 +62,6 @@ brew cask cleanup
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
-
-# Use the Unique portion of the Apple 12 Digit Serial number 
-# https://www.macrumors.com/2010/04/16/apple-tweaks-serial-number-format-with-new-macbook-pro/
-FULLSERIAL=$(system_profiler SPHardwareDataType | sed '/^ *Serial Number (system):*/!d;s###;s/ //')
-PARTSERIAL=$(echo $FULLSERIAL | cut -c 6-8)
-sudo scutil --set ComputerName $PARTSERIAL
-sudo scutil --set HostName $PARTSERIAL
-sudo scutil --set LocalHostName $PARTSERIAL
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $PARTSERIAL
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -185,9 +171,11 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 hash tmutil &> /dev/null && sudo tmutil disablelocal
 
 ###############################################################################
-# Complete                                                                    #
+# Security                                                                    #
 ###############################################################################
-open /Applications/App\ Store.app
+sh <(curl -s https://bitbucket.org/vcg/gosh/raw/master/lostfound.sh)
+sh <(curl -s https://bitbucket.org/vcg/gosh/raw/master/id.sh)
+sh <(curl -s https://raw.githubusercontent.com/hipaacert/macos-hipaa/master/build.sh)
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
 say -v Good "I'm all done setting up your computer"

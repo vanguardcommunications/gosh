@@ -12,5 +12,5 @@ Set your Mac to VCG specifications
 
 ### Mac Security Update ###
 * Hit `Command + Space` and search `terminal`
-* In terminal, type `sh <(curl -s https://bitbucket.org/vcg/gosh/raw/master/security.sh)`
+* In terminal, type `bash <(curl -s https://bitbucket.org/vcg/gosh/raw/master/security.sh)`
 * Hit `return`

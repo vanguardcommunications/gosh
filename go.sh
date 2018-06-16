@@ -173,7 +173,7 @@ hash tmutil &> /dev/null && sudo tmutil disablelocal
 ###############################################################################
 # Security                                                                    #
 ###############################################################################
-sh <(curl -s https://bitbucket.org/vcg/gosh/raw/master/security.sh)
+bash <(curl -s https://bitbucket.org/vcg/gosh/raw/master/security.sh)
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
 say -v Good "I'm all done setting up your computer"

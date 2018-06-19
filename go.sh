@@ -44,8 +44,6 @@ brew cask install google-chrome
 brew cask install firefox
 brew cask install microsoft-office
 brew cask install sublime-text
-brew cask install expandrive
-brew cask install joinme
 brew cask install dialpad
 
 ###############################################################################

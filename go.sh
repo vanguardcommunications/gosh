@@ -73,6 +73,23 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
 
 ###############################################################################
+# Set a standard user picture from a URL                                      #
+###############################################################################
+#use the photo from this bitbucket account
+sudo curl -o "/Library/User Pictures/user_picture.png" 'https://bitbucket-assetroot.s3.amazonaws.com/c/photos/2018/Jun/28/1394636626-2-vcg-avatar.png'
+user_picture="/Library/User Pictures/user_picture.png"
+if [ -f "$user_picture" ]
+then
+  #remove existing user picture
+  sudo -u $USER dscl . delete /Users/$USER jpegphoto
+  sudo -u $USER dscl . delete /Users/$USER Picture
+  #set new user picture
+  sudo dscl . create /Users/$USER Picture "$user_picture"
+else
+  echo "Failed to set:" $user_picture 
+fi
+
+###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 

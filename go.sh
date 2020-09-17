@@ -75,8 +75,8 @@ launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.
 ###############################################################################
 # Set a standard user picture from a URL                                      #
 ###############################################################################
-#use the photo from this bitbucket account
-sudo curl -o "/Library/User Pictures/user_picture.png" 'https://bitbucket-assetroot.s3.amazonaws.com/c/photos/2018/Jun/28/1394636626-2-vcg-avatar.png'
+#use the photo from this account
+sudo curl -o "/Library/User Pictures/user_picture.png" 'https://avatars3.githubusercontent.com/u/71468432'
 user_picture="/Library/User Pictures/user_picture.png"
 if [ -f "$user_picture" ]
 then
@@ -188,7 +188,7 @@ hash tmutil &> /dev/null && sudo tmutil disablelocal
 ###############################################################################
 # Security                                                                    #
 ###############################################################################
-bash <(curl -s https://bitbucket.org/vcg/gosh/raw/master/security.sh)
+bash <(curl -s https://raw.githubusercontent.com/vanguardcommunications/gosh/master/security.sh)
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
 say -v Good "I'm all done setting up your computer"

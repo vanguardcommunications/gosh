@@ -33,23 +33,9 @@ else
 fi
 
 ###############################################################################
-# Homebrew + Cask                                                             #
+# Install Apps via Homebrew Bundle                                            #
 ###############################################################################
-brew tap caskroom/cask
-
-###############################################################################
-# Common                                                                      #
-###############################################################################
-brew cask install google-chrome
-brew cask install firefox
-brew cask install microsoft-office
-brew cask install sublime-text
-brew cask install dialpad
-
-###############################################################################
-# Design                                                                      #
-###############################################################################
-brew cask install adobe-creative-cloud #https://github.com/caskroom/homebrew-cask/pull/39442
+brew bundle --file <(curl -s https://raw.githubusercontent.com/vanguardcommunications/gosh/master/brewfile)
 
 ###############################################################################
 # Cleanup                                                                     #

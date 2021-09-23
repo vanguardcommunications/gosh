@@ -1,0 +1,6 @@
+brew "git"
+cask "brave-browser"
+cask "google-chrome"
+cask "firefox"
+cask "microsoft-office"
+cask "dialpad"
